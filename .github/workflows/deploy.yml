@@ -20,7 +20,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Build the project
-        run: mvn clean package
+        run: |
+          cd api-productos
+          mvn clean package
 
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.4
