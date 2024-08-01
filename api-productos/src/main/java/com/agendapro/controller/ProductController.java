@@ -34,7 +34,7 @@ public class ProductController {
 
     @PreAuthorize("hasRole('PRODUCT_UPDATE')")
     @PutMapping("/{id}")
-    ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
         Product updatedProduct = productService.updateProduct(id, productDetails);
         return ResponseEntity.ok(updatedProduct);
     }

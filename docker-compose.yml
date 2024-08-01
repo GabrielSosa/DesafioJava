@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: agendapro-db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: prueba
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./sql-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306"
+    networks:
+      - spring-net
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -proot || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  productos:
+    build:
+      context: ./api-productos
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - spring-net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/agendapro-db
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: prueba
+
+networks:
+  spring-net:
+    driver: bridge
