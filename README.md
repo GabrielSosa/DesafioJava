@@ -28,14 +28,14 @@ Este proyecto está diseñado por Gabriel Sosa y es parte de un desafio.
 ## Apis expuestas en AWS
 
 Actualmente las Apis estan expuestas en un servidor aws
-1. Crear usuario (POST): http://3.149.236.220:8080/user
-2. Consultar producto por id (GET): http://3.149.236.220:8080/product/1
-3. Consultar todos los productos (GET): http://3.149.236.220:8080/product
-4. Consultar producto por nombre (GET): http://3.149.236.220:8080/product/search
-5. Estadisticas (GET): http://3.149.236.220:8080/statistics/Computadoras
-6. Crear producto (POST): http://3.149.236.220:8080/product
-7. Modificar producto (PUT): http://3.149.236.220:8080/product/1
-8. Eliminar produto (DELETE): http://3.149.236.220:8080/product/1
+1. Crear usuario (POST): http://3.21.187.29:8080/user
+2. Consultar producto por id (GET): http://3.21.187.29:8080/product/1
+3. Consultar todos los productos (GET): http://3.21.187.29:8080/product
+4. Consultar producto por nombre (GET): http://3.21.187.29:8080/product/search
+5. Estadisticas (GET): http://3.21.187.29:8080/statistics/Computadoras
+6. Crear producto (POST): http://3.21.187.29:8080/product
+7. Modificar producto (PUT): http://3.21.187.29:8080/product/1
+8. Eliminar produto (DELETE): http://3.21.187.29:8080/product/1
 
 
 Se comparte el enlace con la colección POSTMAN:
