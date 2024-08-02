@@ -2,9 +2,11 @@ package com.agendapro.controller;
 
 import com.agendapro.domain.Product;
 import com.agendapro.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,14 +29,20 @@ public class ProductController {
 
     @PreAuthorize("hasRole('PRODUCT_INSERT')")
     @PostMapping
-    public ResponseEntity<Product> create(@RequestBody Product product){
-        Product createdProduct = productService.create(product);
-        return ResponseEntity.ok(createdProduct);
+    public ResponseEntity<?> create(@Valid @RequestBody Product product, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.badRequest().body(result.getAllErrors());
+        }
+
+        return ResponseEntity.ok(productService.create(product));
     }
 
     @PreAuthorize("hasRole('PRODUCT_UPDATE')")
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
+    public ResponseEntity<?> updateProduct(@PathVariable Long id,@Valid @RequestBody Product productDetails, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.badRequest().body(result.getAllErrors());
+        }
         Product updatedProduct = productService.updateProduct(id, productDetails);
         return ResponseEntity.ok(updatedProduct);
     }

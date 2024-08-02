@@ -41,7 +41,7 @@ class ProductControllerTest {
         BindingResult bindingResult = mock(BindingResult.class);
         when(bindingResult.hasErrors()).thenReturn(false);
 
-        ResponseEntity<Product> response = (ResponseEntity<Product>) productController.create(product);
+        ResponseEntity<?> response = (ResponseEntity<Product>) productController.create(product, bindingResult);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
@@ -59,7 +59,7 @@ class ProductControllerTest {
         BindingResult bindingResult = mock(BindingResult.class);
         when(bindingResult.hasErrors()).thenReturn(false);
 
-        ResponseEntity<Product> response = productController.updateProduct(1L, product);
+        ResponseEntity<?> response = productController.updateProduct(1L, product, bindingResult);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }

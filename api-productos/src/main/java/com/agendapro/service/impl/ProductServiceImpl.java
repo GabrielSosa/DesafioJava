@@ -49,7 +49,6 @@ public class ProductServiceImpl implements ProductService {
             product.setName(productDetails.getName());
             product.setCategory(productDetails.getCategory());
             product.setPrice(productDetails.getPrice());
-            statisticsService.updateStatistics(product.getCategory());
             return productRepository.save(product);
         } else {
             throw new RuntimeException("Product not found with id " + id);
